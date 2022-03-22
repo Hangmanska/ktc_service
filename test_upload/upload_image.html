@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+
+            function run(){
+                document.submitform.submit(); 
+            }
+         
+            /*
+            $('form').on('sumbit', function(e){
+                e.preventDefault(); 
+                var get_data = $(this).seialize();
+                console.log(get_data);
+               
+                $.ajax({
+                    url: "http://127.0.0.1:9003/api/set_ktc_combinepart",
+                    type: "POST",
+                    data: get_data,
+                    success: function (result) {
+                        //do somthing here
+                        console.log(result);
+                    }
+                });
+               
+            });
+            */
+        });       
+        </script>
+</head>
+<body>
+<form method="post" name="submitform" enctype="multipart/form-data" action="http://127.0.0.1:9003/api/set_ktc_combinepart">
+        <input type="hidden" name="update" value="yes">
+        <input type="hidden" name="deviceid" value="6">
+        <fieldset class="ui-grid-a">
+            <div class="ui-block-a" style="text-align: right; width: 20%">JC : &nbsp;&nbsp;&nbsp;</div>
+          <div class="ui-block-b">JC6201001</div>
+          
+            <div class="ui-block-a" style="text-align: right; width: 20%">Customer : &nbsp;&nbsp;&nbsp;</div>
+          <div class="ui-block-b">Master</div>
+          
+            <div class="ui-block-a" style="text-align: right; width: 20%">Serial No. : &nbsp;&nbsp;&nbsp;</div>
+          <div class="ui-block-b"><div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset"><input type="number" data-role="text" value="142181155786" name="modem_id" id="serial"></div></div>
+          <div class="ui-block-c"><button type="button" onclick="document.location.href = 'qrcode.php?id='+$('#serial').val();" class=" ui-btn ui-shadow ui-corner-all">Search</button></div>
+          
+          <div class="ui-block-a" style="text-align: right; width: 20%">Sim : &nbsp;&nbsp;&nbsp;</div>
+          <div class="ui-block-b">0938783682</div>
+          
+          <div class="ui-block-a" style="text-align: right; width: 20%">Operator : &nbsp;&nbsp;&nbsp;</div>
+          <div class="ui-block-b">true</div>
+          
+          <div class="ui-block-a" style="text-align: right; width: 20%">Car Plate No. : &nbsp;&nbsp;&nbsp;</div>
+          <div class="ui-block-b"><div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset"><input type="text" data-role="text" value="12 กขค 58" name="dlt_vehicle_id"></div></div>
+          
+          <div class="ui-block-a" style="text-align: right; width: 20%">Car Brand : &nbsp;&nbsp;&nbsp;</div>
+          <div class="ui-block-b"><div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset"><input type="text" data-role="text" value="aaToyoteesss" name="dlt_vehicle_type"></div></div>
+          
+          <div class="ui-block-a" style="text-align: right; width: 20%">Chassis : &nbsp;&nbsp;&nbsp;</div>
+          <div class="ui-block-b"><div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset"><input type="text" data-role="text" value="42567" name="dlt_vehicle_chassis_no"></div></div>
+          
+          <div class="ui-block-a" style="text-align: right; width: 20%">DLT Type : &nbsp;&nbsp;&nbsp;</div>
+          <div class="ui-block-b">
+              <div class="ui-select"><div id="select-26-button" class="ui-btn ui-icon-carat-d ui-btn-icon-right ui-corner-all ui-shadow"><span>(Optional)</span><select name="dlt_vehicle_register_type">
+                  <option value="">(Optional)</option>
+                  <option value="1000">รถโดยสาร ไม่ได้ระบุมาตรฐานรถและประเภทการขนส่ง</option>
+                  <option value="1101">รถโดยสาร มาตรฐาน 1 ก ไม่ได้ระบุประเภทการขนส่ง</option>
+                  <option value="1111">รถโดยสาร มาตรฐาน 1 ก ส่วนบุคคล</option>
+                  <option value="1121">รถโดยสาร มาตรฐาน 1 ก ไม่ประจำทาง</option>
+                  <option value="1131">รถโดยสาร มาตรฐาน 1 ก ประจำทาง</option>
+                  <option value="1102">รถโดยสาร มาตรฐาน 1 ข ไม่ได้ระบุประเภทการขนส่ง</option>
+                  <option value="1112">รถโดยสาร มาตรฐาน 1 ข ส่วนบุคคล</option>
+                  <option value="1122">รถโดยสาร มาตรฐาน 1 ข ไม่ประจำทาง</option>
+                  <option value="1132">รถโดยสาร มาตรฐาน 1 ข ประจำทาง</option>
+                  <option value="1201">รถโดยสาร มาตรฐาน 2 ก ไม่ได้ระบุประเภทการขนส่ง</option>
+                  <option value="1211">รถโดยสาร มาตรฐาน 2 ก ส่วนบุคคล</option>
+                  <option value="1221">รถโดยสาร มาตรฐาน 2 ก ไม่ประจำทาง</option>
+                  <option value="1231">รถโดยสาร มาตรฐาน 2 ก ประจำทาง</option>
+                  <option value="1202">รถโดยสาร มาตรฐาน 2 ข ไม่ได้ระบุประเภทการขนส่ง</option>
+                  <option value="1212">รถโดยสาร มาตรฐาน 2 ข ส่วนบุคคล</option>
+                  <option value="1222">รถโดยสาร มาตรฐาน 2 ข ไม่ประจำทาง</option>
+                  <option value="1232">รถโดยสาร มาตรฐาน 2 ข ประจำทาง</option>
+                  <option value="1203">รถโดยสาร มาตรฐาน 2 ค ไม่ได้ระบุประเภทการขนส่ง</option>
+                  <option value="1213">รถโดยสาร มาตรฐาน 2 ค ส่วนบุคคล</option>
+                  <option value="1223">รถโดยสาร มาตรฐาน 2 ค ไม่ประจำทาง</option>
+                  <option value="1233">รถโดยสาร มาตรฐาน 2 ค ประจำทาง</option>
+                  <option value="1204">รถโดยสารมาตรฐาน2งไม่ได้ระบุประเภทการขนส่ง</option>
+                  <option value="1214">รถโดยสาร มาตรฐาน 2 ง ส่วนบุคคล</option>
+                  <option value="1224">รถโดยสาร มาตรฐาน 2 ง ไม่ประจำทาง</option>
+                  <option value="1234">รถโดยสาร มาตรฐาน 2 ง ประจำทาง</option>
+                  <option value="1205">รถโดยสาร มาตรฐาน 2 จ ไม่ได้ระบุประเภทการขนส่ง</option>
+                  <option value="1215">รถโดยสาร มาตรฐาน 2 จ ส่วนบุคคล</option>
+                  <option value="1225">รถโดยสาร มาตรฐาน 2 จ ไม่ประจำทาง</option>
+                  <option value="1235">รถโดยสาร มาตรฐาน 2 จ ประจำทาง</option>
+                  <option value="1301">รถโดยสาร มาตรฐาน 3 ก ไม่ได้ระบุประเภทการขนส่ง</option>
+                  <option value="1311">รถโดยสาร มาตรฐาน 3 ก ส่วนบุคคล</option>
+                  <option value="1321">รถโดยสาร มาตรฐาน 3 ก ไม่ประจำทาง</option>
+                  <option value="1331">รถโดยสาร มาตรฐาน 3 ก ประจำทาง</option>
+                  <option value="1302">รถโดยสาร มาตรฐาน 3 ข ไม่ได้ระบุประเภทการขนส่ง รถโดยสาร</option>
+                  <option value="1312">มาตรฐาน 3 ข ส่วนบุคคล</option>
+                  <option value="1322">รถโดยสาร มาตรฐาน 3 ข ไม่ประจำทาง</option>
+                  <option value="1332">รถโดยสาร มาตรฐาน 3 ข ประจำทาง</option>
+                  <option value="1303">รถโดยสาร มาตรฐาน 3 ค ไม่ได้ระบุประเภทการขนส่ง รถโดยสาร</option>
+                  <option value="1313">มาตรฐาน 3 ค ส่วนบุคคล</option>
+                  <option value="1323">รถโดยสาร มาตรฐาน 3 ค ไม่ประจำทาง</option>
+                  <option value="1333">รถโดยสาร มาตรฐาน 3 ค ประจำทาง</option>
+                  <option value="1304">รถโดยสารมาตรฐาน3งไม่ได้ระบุประเภทการขนส่ง</option>
+                  <option value="1314">รถโดยสาร มาตรฐาน 3 ง ส่วนบุคคล</option>
+                  <option value="1324">รถโดยสาร มาตรฐาน 3 ง ไม่ประจำทาง</option>
+                  <option value="1334">รถโดยสาร มาตรฐาน 3 ง ประจำทาง</option>
+                  <option value="1305">รถโดยสาร มาตรฐาน 3 จ ไม่ได้ระบุประเภทการขนส่ง</option>
+                  <option value="1315">รถโดยสาร มาตรฐาน 3 จ ส่วนบุคคล</option>
+                  <option value="1325">รถโดยสาร มาตรฐาน 3 จ ไม่ประจำทาง</option>
+                  <option value="1335">รถโดยสาร มาตรฐาน 3 จ ประจำทาง</option>
+                  <option value="1306">รถโดยสาร มาตรฐาน 3 ฉ ไม่ได้ระบุประเภทการขนส่ง</option>
+                  <option value="1316">รถโดยสาร มาตรฐาน 3 ฉ ส่วนบุคคล</option>
+                  <option value="1326">รถโดยสาร มาตรฐาน 3 ฉ ไม่ประจำทาง</option>
+                  <option value="1336">รถโดยสาร มาตรฐาน 3 ฉ ประจำทาง</option>
+                  <option value="1401">รถโดยสาร มาตรฐาน 4 ก ไม่ได้ระบุประเภทการขนส่ง</option>
+                  <option value="1411">รถโดยสาร มาตรฐาน 4 ก ส่วนบุคคล</option>
+                  <option value="1421">รถโดยสาร มาตรฐาน 4 ก ไม่ประจำทาง</option>
+                  <option value="1431">รถโดยสาร มาตรฐาน 4 ก ประจำทาง</option>
+              </select></div></div>
+          <div>
+          <div class="ui-block-a" style="text-align: right; width: 20%">Province : &nbsp;&nbsp;&nbsp;</div>
+          <div class="ui-block-b">
+              <div class="ui-select"><div id="select-27-button" class="ui-btn ui-icon-carat-d ui-btn-icon-right ui-corner-all ui-shadow"><span>กรุงเทพมหานคร</span><select name="dlt_province_code">
+                  <option value="">(Optional)</option>
+                  <option value="001">กรุงเทพมหานคร</option>
+                  <option value="100">ชัยนาท</option>
+                  <option value="101">สิงห์บุรี</option>
+                  <option value="102">ลพบุรี</option>
+                  <option value="103">อ่างทอง</option>
+                  <option value="104">สระบุรี</option>
+                  <option value="105">พระนครศรีอยุธยา</option>
+                  <option value="106">ปทุมธานี</option>
+                  <option value="107">นนทบุรี</option>
+                  <option value="108">สมุทรปราการ</option>
+                  <option value="200">นครนายก</option>
+                  <option value="201">ปราจีนบุรี</option>
+                  <option value="202">ฉะเชิงเทรา</option>
+                  <option value="203">ชลบุรี</option>
+                  <option value="204">ระยอง</option>
+                  <option value="205">จันทบุรี</option>
+                  <option value="206">ตราด</option>
+                  <option value="207">สระแก้ว</option>
+                  <option value="300">ชัยภูมิ</option>
+                  <option value="301">ยโสธร</option>
+                  <option value="302">อุบลราชธานี</option>
+                  <option value="303">ศรีสะเกษ</option>
+                  <option value="304">บุรีรัมย์</option>
+                  <option value="305">นครราชสีมา</option>
+                  <option value="306">สุรินทร์</option>
+                  <option value="307">อำนาจเจริญ</option>
+                  <option value="308">หนองบัวลำภู</option>
+                  <option value="309">บึงกาฬ</option>
+                  <option value="400">หนองคาย</option>
+                  <option value="401">เลย</option>
+                  <option value="402">อุดรธานี</option>
+                  <option value="403">นครพนม</option>
+                  <option value="404">สกลนคร</option>
+                  <option value="405">ขอนแก่น</option>
+                  <option value="406">กาฬสินธุ์</option>
+                  <option value="407">มหาสารคาม</option>
+                  <option value="408">ร้อยเอ็ด</option>
+                  <option value="409">มุกดาหาร</option>
+                  <option value="500">เชียงราย</option>
+                  <option value="501">แม่ฮ่องสอน</option>
+                  <option value="502">เชียงใหม่</option>
+                  <option value="503">พะเยา</option>
+                  <option value="504">น่าน</option>
+                  <option value="505">ลำพูน</option>
+                  <option value="506">ลำปาง</option>
+                  <option value="507">แพร่</option>
+                  <option value="600">อุตรดิตถ์</option>
+                  <option value="601">สุโขทัย</option>
+                  <option value="602">ตาก</option>
+                  <option value="603">พิษณุโลก</option>
+                  <option value="604">กำแพงเพชร</option>
+                  <option value="605">พิจิตร</option>
+                  <option value="606">เพชรบูรณ์</option>
+                  <option value="607">นครสวรรค์</option>
+                  <option value="608">อุทัยธานี</option>
+                  <option value="700">สุพรรณบุรี</option>
+                  <option value="701">กาญจนบุรี</option>
+                  <option value="702">นครปฐม</option>
+                  <option value="703">ราชบุรี</option>
+                  <option value="704">สมุทรสาคร</option>
+                  <option value="705">สมุทรสงคราม</option>
+                  <option value="706">เพชรบุรี</option>
+                  <option value="707">ประจวบคีรีขันธ์</option>
+                  <option value="800">ชุมพร</option>
+                  <option value="801">ระนอง</option>
+                  <option value="802">สุราษฎร์ธานี</option>
+                  <option value="803">พังงา</option>
+                  <option value="804">นครศรีธรรมราช</option>
+                  <option value="805">กระบี่</option>
+                  <option value="806">ภูเก็ต</option>
+                  <option value="900">พัทลุง</option>
+                  <option value="901">ตรัง</option>
+                  <option value="902">สงขลา</option>
+                  <option value="903">สตูล</option>
+                  <option value="904">ปัตตานี</option>
+                  <option value="905">ยะลา</option>
+                  <option value="906">นราธิวาส</option>
+                  <option value="907">เบตง</option>
+              </select></div></div>
+          </div>
+          
+          <div class="ui-block-a" style="text-align: right; width: 20%">Card Reader : &nbsp;&nbsp;&nbsp;</div>
+          <div class="ui-block-b"><div class="ui-checkbox"><label class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-checkbox-on">Yes</label><input type="checkbox" name="has_card_reader" value="1"></div></div>
+          
+          <div class="ui-block-a" style="text-align: right; width: 20%">Card Reader info. to DLT : &nbsp;&nbsp;&nbsp;</div>
+          <div class="ui-block-b"><div class="ui-checkbox"><label class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-checkbox-on">Yes</label><input type="checkbox" name="dlt_card_reader" value="1"></div></div>
+          
+          <div class="ui-block-a" style="text-align: right; width: 20%">Fuel Level (Precentage) : &nbsp;&nbsp;&nbsp;</div>
+          <div class="ui-block-b"><div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset"><input type="number" name="fueltank_percent" value="50" "="" label="Length"></div></div>
+          
+          <div class="ui-block-a" style="text-align: right; width: 20%">Fuel Tank Dimention : &nbsp;&nbsp;&nbsp;</div>
+          <div class="ui-block-b">
+              <div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset"><input type="number" value="" placeholder="Length"></div>
+              <div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset"><input type="number" value="" placeholder="Width"></div>
+              <div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset"><input type="number" value="" placeholder="Height"></div>
+          </div>
+          
+          <div class="ui-block-a" style="text-align: right; width: 20%">Mileage : &nbsp;&nbsp;&nbsp;</div>
+          <div class="ui-block-b">
+              <div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset"><input type="number" name="mileage_now" value="123456"></div>
+          </div>
+          
+          <div class="ui-block-a" style="text-align: right; width: 20%">Device Photo : &nbsp;&nbsp;&nbsp;</div>
+          <div class="ui-block-b"><div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset"><input type="file" name="image_device" id="image_device" value=" width=" 20"=""></div></div>
+          <div class="ui-block-a" style="text-align: right; width: 20%"></div>
+          <div class="ui-block-b"><img src="device/6/device/span01.png" width="150px" style="border: 5px solid #FFF; float:left; clear:both"></div>
+          
+          <div class="ui-block-a" style="text-align: right; width: 20%">Chassis Photo : &nbsp;&nbsp;&nbsp;</div>
+          <div class="ui-block-b"><div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset"><input type="file" name="image_chassis" id="image_chassis" value=" width=" 20"=""></div></div>
+          <div class="ui-block-a" style="text-align: right; width: 20%"></div>
+          <div class="ui-block-b"><img src="device/6/chassis/span02.png" width="150px" style="border: 5px solid #FFF; float:left; clear:both"></div>
+          
+          <div class="ui-block-a" style="text-align: right; width: 20%">Mileage Photo : &nbsp;&nbsp;&nbsp;</div>
+          <div class="ui-block-b"><div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset"><input type="file" name="image_mileage" id="image_mileage" value=" width=" 20"=""></div></div>
+          <div class="ui-block-a" style="text-align: right; width: 20%"></div>
+          <div class="ui-block-b"><img src="device/6/mileage/Untitled2.png" width="150px" style="border: 5px solid #FFF; float:left; clear:both"></div>
+          
+          <div class="ui-block-a" style="text-align: right; width: 20%">Fuel Tank Photo : &nbsp;&nbsp;&nbsp;</div>
+          <div class="ui-block-b"><div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset"><input type="file" name="image_fuel_tank" id="image_fuel_tank" value=" width=" 20"=""></div></div>
+          <div class="ui-block-a" style="text-align: right; width: 20%"></div>
+          <div class="ui-block-b"><img src="device/6/chassis/span02.png" width="150px" style="border: 5px solid #FFF; float:left; clear:both"></div>
+          
+          <div class="ui-block-a" style="text-align: right; width: 20%">Vehicle Registration Certificate : &nbsp;&nbsp;&nbsp;</div>
+          <div class="ui-block-b"><div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset"><input type="file" name="image_doc_vehicle" id="image_doc_vehicle" value=" width=" 20"=""></div></div>
+          <div class="ui-block-a" style="text-align: right; width: 20%"></div>
+          <div class="ui-block-b"><img src="device/6/doc/Untitled3.png" width="150px" style="border: 5px solid #FFF; float:left; clear:both"></div>
+          <!--<div>
+              Mileage Photo :
+              <input type="file" name="image_mileage" id="image_mileage" value="">
+              <img src="device/6/mileage/Untitled2.png" width="30%" style="border: 5px solid #FFF">``
+          </div>
+          <div>
+              Fuel Tank Photo :
+              <input type="file" name="image_fuel_tank" id="image_fuel_tank" value="">
+              <img src="device/6/tank/span04.png" width="30%" style="border: 5px solid #FFF">
+          </div>
+          <div>
+              Vehicle Registration Certificate (Optional) :
+              <input type="file" name="image_doc_vehicle" id="image_doc_vehicle" value="">
+              <img src="device/6/doc/Untitled3.png" width="30%" style="border: 5px solid #FFF">
+          </div>	-->
+          <!--<div class="ui-block-a" style="text-align: right; width: 20%">Finish : &nbsp;&nbsp;&nbsp;</div>
+          <div class="ui-block-b"><input type="text" data-role="date" value="08/03/19"></div>
+          <div class="ui-block-a" style="text-align: right; width: 20%">&nbsp;&nbsp;&nbsp;</div>
+          <div class="ui-block-b"><input type="time" data-clear-btn="false" value="07:12"></div>-->
+      </div></div></fieldset>
+      <div class="ui-btn ui-input-btn ui-btn-b ui-corner-all ui-shadow ui-icon-check ui-btn-icon-left">Send<input type="submit" value="Send" data-icon="check" data-theme="b" onclick="run()" ></div>
+ 
+</form>
+</body>
+</html>

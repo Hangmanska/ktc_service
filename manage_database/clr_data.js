@@ -1,0 +1,145 @@
+
+var async = require('async');
+
+
+var db = require('iConnectdb_ktc_backup.js');
+var ipm = new db.im2(db.get_configdb_tcp());
+var db_config = "master_config";
+
+
+var db2 = require('iConnectdb_ktc.js');
+var ipm2 = new db2.im2(db2.get_configdb_tcp());
+var utl = require('Utility.js');
+var year ="2021"
+
+var db_owner ='db_10011'
+
+function move_to_backup()
+{
+
+/*
+    var sql="";
+    sql+="  WITH res as( ";
+    sql+="    SELECT row_number() OVER (ORDER BY table_name), table_schema,table_name";
+    sql+=" ,substr(table_name,4,11) as id ";
+    sql+="    FROM information_schema.tables";
+    sql+="    WHERE table_schema='public'";
+    sql+="    AND table_name LIKE 'ht%'";
+  //  sql+="    --OR table_name LIKE 'img%'";
+    sql+="    ORDER BY table_schema,table_name)";
+    sql+="    SELECT table_name,id FROM res WHERE row_number >'16' ";
+    sql+="    AND row_number < '143' ";
+ 
+
+
+
+    
+      var sql="";
+      sql+="  SELECT table_name,pg_size_pretty(pg_total_relation_size(table_name)) ";
+      sql+="  FROM information_schema.tables ";
+      sql+="  WHERE table_schema='public' ";
+      sql+="  AND table_name LIKE 'img%' ";
+      sql+="  AND pg_size_pretty(pg_total_relation_size(table_name))  like '%MB%' ";
+      sql+="   ORDER BY table_name ";
+
+       */
+
+
+      var sql="";
+      sql+="  SELECT table_name,pg_size_pretty(pg_relation_size(table_name)) ";
+      sql+="  FROM information_schema.tables ";
+      sql+="  WHERE table_schema='public' ";
+      sql+="  AND table_name LIKE 'img%' ";
+    //  sql+="  AND pg_size_pretty(pg_relation_size(table_name))  like '%MB%' ";
+      sql+="   ORDER BY table_name ";
+
+
+    ipm2.db.dbname = db_owner;
+    db2.get_rows(ipm2, sql, function (rows) 
+    {
+        if (rows.length > 0)
+        {
+            async.eachSeries(rows, function (row, next)
+            {
+
+                debugger;
+                var tb_name = utl.Trim( row.table_name)
+              //  var idx = row.id;
+                //var sql = "COPY "+tb_name+" FROM '/var/lib/pgsql/9.5/data/"+tb_name+".csv';";
+             //   var sql = " COPY (select * from "+tb_name+" WHERE  gps_datetime <= '2020-09-30 23:59' ) TO '/data/db_10001/2020/"+tb_name+".csv'";
+              //  var sql = " COPY (select * from "+tb_name+" WHERE EXTRACT(YEAR FROM gps_datetime)!='2019') TO '/data/db_10011/"+tb_name+".csv' ";
+               // var sql = " COPY (select * from "+tb_name+" WHERE EXTRACT(YEAR FROM idate) ='2019') TO '/data/db_10003_img_2019/"+tb_name+".csv' ";
+            //  var xtable =  schma_table(tb_name,idx);
+
+           //   excute(sql,tb_name,function(is_ok)
+           //   {
+           //       console.log(' copy '+tb_name+' '+is_ok);
+
+                  del_when_move_complete(tb_name,function(is_del_ok)
+                  {
+                        console.log(' del_move_complete '+is_del_ok);
+
+                        clean_tb(tb_name,function(is_clean_ok)
+                        {
+                            console.log(' clean_complete '+is_clean_ok);
+                            next();
+                        })
+                  })
+                  // 
+           //   });
+
+              
+
+            },function()
+            {
+                console.log('finish');
+            });
+        }else{
+            var tb_name = utl.Trim( row.table_name)
+            console.log(' no data enouge '+tb_name);
+                            next();
+        }
+    });
+}
+
+function del_when_move_complete(tb_name,callback)
+{
+    var sql="";
+   // sql+=" DELETE from "+tb_name+" WHERE EXTRACT(YEAR FROM gps_datetime)!='2019' ";
+  //sql+=" DELETE from "+tb_name+" WHERE EXTRACT(YEAR FROM idate)='2019' ";
+  // sql+=" DELETE from "+tb_name+" WHERE  extract(year from gps_datetime)!='2021' ";
+  sql+=" DELETE from "+tb_name+" WHERE idate <='2021-02-27' ";
+    excute(sql,tb_name,function(is_ok)
+    {
+        console.log(' del '+tb_name+' '+is_ok)
+        callback(is_ok)
+    });
+}
+
+function clean_tb(tb_name,callback)
+{
+    
+    var sql="VACUUM(FULL, ANALYZE, VERBOSE) "+tb_name;
+    excute(sql,tb_name,function(is_ok)
+    {
+        console.log(' VACUUM '+tb_name+' '+is_ok)
+        callback(is_ok)
+    });
+
+}
+
+
+
+function excute(sql,tb_name,callback)
+{
+    ipm2.db.dbname = db_owner;
+    db2.excute(ipm2, sql, function (is_ok) 
+    {
+      
+      callback(is_ok);
+      return;
+    });
+}
+
+
+move_to_backup();

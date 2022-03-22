@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+
+</head>
+<body>
+       
+    <form name="formname" id="formid" action="http://61.91.14.253:9003/api/set_ktc_combinepart" method="post">
+        <input type="text" name="input1" value="test1"  />
+        <input type="text" name="input2" value="test2"  />
+        <input type="submit" name="send" value="Submit" onclick="test()" />
+        </form>
+        <script type="text/javascript"> 
+
+        function test(){
+            document.getElementById('formid').submit(); 
+        }
+        </script> 
+</body>
+</html>

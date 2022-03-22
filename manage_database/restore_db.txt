@@ -1,0 +1,29 @@
+--COPY ht_1010003003test FROM '/data/dbcsv_backup/ht_1010003156.csv'
+
+INSERT INTO ht_1010003156
+SELECT * FROM ht_1010003003test 
+WHERE gps_datetime >='2018-10-01 00:00:00'
+AND gps_datetime <='2018-12-31 23:59:00'
+--ORDER BY gps_datetime
+
+/*
+SELECT * FROM ht_1010003003 
+WHERE gps_datetime >='2018-10-01 00:00:00'
+AND gps_datetime <='2018-12-31 23:59:00'
+*/
+
+
+SELECT * FROM ht_1010003003test LIMIT 10
+
+
+เช็ค size database
+
+SELECT pg_size_pretty(pg_relation_size('ht_1010003016'));
+
+
+SELECT table_name,pg_size_pretty(pg_relation_size(table_name))
+FROM information_schema.tables
+WHERE table_schema='public'
+AND table_name LIKE 'ht%'
+AND pg_size_pretty(pg_relation_size(table_name))  like '%MB%'
+ORDER BY table_name
